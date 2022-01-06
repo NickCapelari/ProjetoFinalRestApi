@@ -19,10 +19,10 @@ namespace ProjetoFinaAPIRest.Models
         public virtual Pessoa? Pessoa { get; set; }
 
      
-        public double CalculaValorIngresso (double desconto)
+        public void CalculaValorIngresso (double desconto, double valorEvento)
         {
-            ValorFinal -= (desconto/100);
-            return ValorFinal; 
+            valorEvento -= valorEvento * (desconto/100);
+            ValorFinal = valorEvento;
         }
 
 

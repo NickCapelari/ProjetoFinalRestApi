@@ -11,6 +11,9 @@ namespace ProjetoFinaAPIRest.Data
         public DbSet<LocalEvento> LocalEvento { get; set; }
         public DbSet<TipoIngresso> TipoIngresso { get; set; }
         public DbSet<Ingresso> Ingresso { get; set; }
+        public DbSet<Portifolio> Portifolio { get; set;}
+        public DbSet<FotoPortifolio> FotoPortifolio { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

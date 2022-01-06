@@ -4,7 +4,7 @@
 
 namespace ProjetoFinaAPIRest.Migrations
 {
-    public partial class correcaoIdContatoPessoa : Migration
+    public partial class teste : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

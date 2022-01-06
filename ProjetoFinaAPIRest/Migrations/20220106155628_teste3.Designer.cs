@@ -12,8 +12,8 @@ using ProjetoFinaAPIRest.Data;
 namespace ProjetoFinaAPIRest.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20220104212714_test2")]
-    partial class test2
+    [Migration("20220106155628_teste3")]
+    partial class teste3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,6 +87,28 @@ namespace ProjetoFinaAPIRest.Migrations
                     b.HasIndex("LocalEventoId");
 
                     b.ToTable("Evento");
+                });
+
+            modelBuilder.Entity("ProjetoFinaAPIRest.Models.FotoPortifolio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CaminhoFoto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PortifolioId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PortifolioId");
+
+                    b.ToTable("FotoPortifolio");
                 });
 
             modelBuilder.Entity("ProjetoFinaAPIRest.Models.Ingresso", b =>
@@ -202,6 +224,31 @@ namespace ProjetoFinaAPIRest.Migrations
                     b.ToTable("Pessoa");
                 });
 
+            modelBuilder.Entity("ProjetoFinaAPIRest.Models.Portifolio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CaminhoFotoPrincipal")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Portifolio");
+                });
+
             modelBuilder.Entity("ProjetoFinaAPIRest.Models.TipoIngresso", b =>
                 {
                     b.Property<int>("Id")
@@ -243,6 +290,17 @@ namespace ProjetoFinaAPIRest.Migrations
                         .IsRequired();
 
                     b.Navigation("LocalEvento");
+                });
+
+            modelBuilder.Entity("ProjetoFinaAPIRest.Models.FotoPortifolio", b =>
+                {
+                    b.HasOne("ProjetoFinaAPIRest.Models.Portifolio", "Portifolio")
+                        .WithMany("FotosPortifolio")
+                        .HasForeignKey("PortifolioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Portifolio");
                 });
 
             modelBuilder.Entity("ProjetoFinaAPIRest.Models.Ingresso", b =>
@@ -287,6 +345,11 @@ namespace ProjetoFinaAPIRest.Migrations
                     b.Navigation("Contatos");
 
                     b.Navigation("Ingressos");
+                });
+
+            modelBuilder.Entity("ProjetoFinaAPIRest.Models.Portifolio", b =>
+                {
+                    b.Navigation("FotosPortifolio");
                 });
 
             modelBuilder.Entity("ProjetoFinaAPIRest.Models.TipoIngresso", b =>
