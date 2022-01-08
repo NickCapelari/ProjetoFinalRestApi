@@ -17,7 +17,7 @@ namespace ProjetoFinaAPIRest.Controllers
         }
 
         [HttpGet]
-        [Route("tipoIngresso")]
+        [Route("tipoingresso")]
         public async Task<IActionResult> getAllAsync()
         {
             var list = await _tipoIngressoService.FindAllAsync();
@@ -25,7 +25,7 @@ namespace ProjetoFinaAPIRest.Controllers
 
         }
         [HttpGet]
-        [Route("tipoIngresso/{id}")]
+        [Route("tipoingresso/{id}")]
         public async Task<IActionResult> getByIdAsync([FromRoute] int id)
         {
             var tIngresso = await _tipoIngressoService.FindByIdAsync(id);
@@ -33,7 +33,7 @@ namespace ProjetoFinaAPIRest.Controllers
         }
 
         [HttpPost]
-        [Route("tipoIngresso")]
+        [Route("tipoingresso")]
         public async Task<IActionResult> PostAsync(
            [FromBody] TipoIngresso tipoIngresso)
         {
@@ -45,7 +45,7 @@ namespace ProjetoFinaAPIRest.Controllers
             try
             {
                 await _tipoIngressoService.InsertAsync(tipoIngresso);
-                return Created($"api/localevento/{tipoIngresso.Id}", tipoIngresso);
+                return Created($"api/tipoingresso/{tipoIngresso.Id}", tipoIngresso);
             }
             catch (Exception ex)
             {
@@ -55,7 +55,7 @@ namespace ProjetoFinaAPIRest.Controllers
         }
 
         [HttpPut]
-        [Route("tipoIngresso/{id}")]
+        [Route("tipoingresso/{id}")]
         public async Task<IActionResult> PutAsync(
          [FromBody] TipoIngresso tipoIngresso,
          [FromRoute] int id)
@@ -87,7 +87,7 @@ namespace ProjetoFinaAPIRest.Controllers
         }
 
         [HttpDelete]
-        [Route("tipoIngresso/{id}")]
+        [Route("tipoingresso/{id}")]
         public async Task<IActionResult> DeletAsync(
            [FromRoute] int id
             )
