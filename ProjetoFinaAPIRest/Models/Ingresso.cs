@@ -14,8 +14,13 @@ namespace ProjetoFinaAPIRest.Models
         public int TipoIngressoId { get; set; }
         public int EventoId { get; set; }
         public int PessoaId { get; set; }
+
+
+        
         public virtual TipoIngresso? TipoIngresso { get; set; }
+
         public virtual Evento? Evento { get; set; }
+
         public virtual Pessoa? Pessoa { get; set; }
 
      

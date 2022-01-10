@@ -73,7 +73,7 @@ namespace ProjetoFinaAPIRest.Controllers
             try
 
             {               
-                i.TipoIngressoId = ingresso.EventoId;
+                i.TipoIngressoId = ingresso.TipoIngressoId;
                 i.EventoId = ingresso.EventoId;
                 i.PessoaId = ingresso.PessoaId;
                 await _ingresso.UpdateAsync(i);

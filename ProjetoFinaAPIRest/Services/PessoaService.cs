@@ -22,7 +22,6 @@ namespace ProjetoFinaAPIRest.Services
 
         public async Task InsertAsync(Pessoa obj)
         {
-            obj.Contatos = new List<Contato>();
             _contexto.Add(obj);
             await _contexto.SaveChangesAsync();
         }

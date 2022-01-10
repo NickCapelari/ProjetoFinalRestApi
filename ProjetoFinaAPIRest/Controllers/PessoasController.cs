@@ -47,6 +47,7 @@ namespace ProjetoFinaAPIRest.Controllers
 
             try
             {
+
                 await _pessoaService.InsertAsync(pessoa);
                 return Created($"api/localevento/{pessoa.Id}", pessoa);
             }

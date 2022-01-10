@@ -25,7 +25,7 @@ namespace ProjetoFinaAPIRest.Services
         }
         public async Task<Portifolio> FindByIdAsync(int Id)
         {
-            return await _contexto.Portifolio
+            return await _contexto.Portifolio.Include(obj => obj.FotosPortifolio)
                     .FirstOrDefaultAsync(ob => ob.Id == Id);
         }
 

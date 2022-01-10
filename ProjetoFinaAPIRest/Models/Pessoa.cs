@@ -26,13 +26,13 @@ namespace ProjetoFinaAPIRest.Models
         [StringLength(15)]
         public string RG { get; set; }
 
-        [JsonIgnore]
-        [IgnoreDataMember]
-        public virtual ICollection<Contato>? Contatos { get; set; } = new List<Contato>();
 
         [JsonIgnore]
         [IgnoreDataMember]
-        public virtual ICollection<Ingresso>? Ingressos { get; set; } = new List<Ingresso>();
+        public virtual ICollection<Contato>? Contatos { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public virtual ICollection<Ingresso>? Ingressos { get; set; }
         public Pessoa() { }
 
         public Pessoa(int id, string nome, DateTime dataNascimento, string cpf, string rG, ICollection<Contato> contatos, ICollection<Ingresso> ingressos)

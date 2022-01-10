@@ -38,11 +38,17 @@ namespace ProjetoFinaAPIRest.Models
         [Display(Name = "Local do Evento: ")]
         public int LocalEventoId { get; set; }
 
+
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public virtual LocalEvento? LocalEvento { get; set; }
+
         [JsonIgnore]
         [IgnoreDataMember]
         public virtual ICollection<Ingresso>? Ingressos { get; set; }
-        public virtual LocalEvento? LocalEvento { get; set; }
 
+        
+        
        
 
 

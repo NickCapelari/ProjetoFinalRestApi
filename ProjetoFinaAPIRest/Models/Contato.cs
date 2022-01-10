@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace ProjetoFinaAPIRest.Models
 {
@@ -22,6 +24,10 @@ namespace ProjetoFinaAPIRest.Models
         public string Email { get; set; }
 
         public int PessoaId { get; set; }
+
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual Pessoa? Pessoa { get; set; }
 
         public Contato()

@@ -15,7 +15,7 @@ namespace ProjetoFinaAPIRest.Services
 
         public async Task<List<Evento>> FindAllAsync()
         {
-            return await _contexto.Evento.ToListAsync();
+            return await _contexto.Evento.Include(ob=> ob.LocalEvento).ToListAsync();
         }
 
         public async Task InsertAsync(Evento obj)
@@ -25,8 +25,8 @@ namespace ProjetoFinaAPIRest.Services
         }
         public async Task<Evento> FindByIdAsync(int Id)
         {
-            return await _contexto.Evento
-                .Include(obj => obj.LocalEvento)
+            return await _contexto.Evento.
+                Include(ob => ob.LocalEvento)
                 .FirstOrDefaultAsync(ob => ob.Id == Id);
         }
 
