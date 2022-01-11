@@ -32,6 +32,7 @@ namespace ProjetoFinaAPIRest.Controllers
             return ingresso == null ? NotFound() : Ok(ingresso);
         }
 
+
         [HttpPost]
         [Route("ingresso")]
         public async Task<IActionResult> PostAsync(

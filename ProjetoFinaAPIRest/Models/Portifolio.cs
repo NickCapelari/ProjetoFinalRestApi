@@ -12,8 +12,7 @@ namespace ProjetoFinaAPIRest.Models
         public string Descricao { get; set; }
         public string CaminhoFotoPrincipal { get; set; }
 
-        [JsonIgnore]
-        [IgnoreDataMember]
+  
         public virtual ICollection<FotoPortifolio>? FotosPortifolio { get; set; }
 
         public Portifolio()

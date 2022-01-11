@@ -39,8 +39,7 @@ namespace ProjetoFinaAPIRest.Models
         public int LocalEventoId { get; set; }
 
 
-        [JsonIgnore]
-        [IgnoreDataMember]
+      
         public virtual LocalEvento? LocalEvento { get; set; }
 
         [JsonIgnore]
