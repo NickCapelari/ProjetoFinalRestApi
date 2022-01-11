@@ -5,7 +5,7 @@ namespace ProjetoFinaAPIRest.Data
 {
     public class Contexto : DbContext
     {
-        public DbSet<Contato> Contato { get; set; }
+        public DbSet<Contato> Usuario { get; set; }
         public DbSet<Pessoa> Pessoa { get; set; }
         public DbSet<Evento> Evento { get; set; }
         public DbSet<LocalEvento> LocalEvento { get; set; }
@@ -13,6 +13,7 @@ namespace ProjetoFinaAPIRest.Data
         public DbSet<Ingresso> Ingresso { get; set; }
         public DbSet<Portifolio> Portifolio { get; set;}
         public DbSet<FotoPortifolio> FotoPortifolio { get; set; }
+        public DbSet<Usuario> User { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

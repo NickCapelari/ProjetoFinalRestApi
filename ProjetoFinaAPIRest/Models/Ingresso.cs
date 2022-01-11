@@ -9,7 +9,7 @@ namespace ProjetoFinaAPIRest.Models
         [Key]
         public int Id { get; set; }
 
-        public double ValorFinal { get; set; }
+        public double? ValorFinal { get; set; }
 
         public int TipoIngressoId { get; set; }
         public int EventoId { get; set; }
@@ -24,10 +24,19 @@ namespace ProjetoFinaAPIRest.Models
         public virtual Pessoa? Pessoa { get; set; }
 
      
-        public void CalculaValorIngresso (double desconto, double valorEvento)
+        public void CalculaValorIngresso (double valorEvento, double desconto)
         {
-            valorEvento -= valorEvento * (desconto/100);
-            ValorFinal = valorEvento;
+            if(desconto <= 0)
+            {
+                ValorFinal = valorEvento;
+            }
+            else
+            {
+                ValorFinal = valorEvento;
+                valorEvento = valorEvento * (desconto / 100);
+                ValorFinal = ValorFinal - valorEvento;
+            }
+           
         }
 
 

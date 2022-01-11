@@ -21,13 +21,13 @@ namespace ProjetoFinaAPIRest.Models
         [Display(Name = "Data de Inicio: ")]
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        
         public DateTime DataInicio { get; set; }
 
         [Display(Name = "Data Encerramento: ")]
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        
         public DateTime DataFim { get; set; }
 
         [Display(Name = "Valor do Ingresso: ")]

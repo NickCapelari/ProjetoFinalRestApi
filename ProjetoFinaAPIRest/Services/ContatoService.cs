@@ -15,7 +15,7 @@ namespace ProjetoFinaAPIRest.Services
 
         public async Task<List<Contato>> FindAllAsync()
         {
-            return await _contexto.Contato.ToListAsync();
+            return await _contexto.Usuario.ToListAsync();
         }
         public async Task InsertAsync(Contato obj)
         {
@@ -24,7 +24,7 @@ namespace ProjetoFinaAPIRest.Services
         }
         public async Task<Contato> FindByIdAsync(int Id)
         {
-            return await _contexto.Contato
+            return await _contexto.Usuario
                 .FirstOrDefaultAsync(obj => obj.Id == Id);
         }
 
@@ -32,8 +32,8 @@ namespace ProjetoFinaAPIRest.Services
         {
             try
             {
-                var obj = await _contexto.Contato.FirstOrDefaultAsync(x => x.Id == Id);
-                _contexto.Contato.Remove(obj);
+                var obj = await _contexto.Usuario.FirstOrDefaultAsync(x => x.Id == Id);
+                _contexto.Usuario.Remove(obj);
                 await _contexto.SaveChangesAsync();
             }
             catch (Exception ex)
@@ -44,7 +44,7 @@ namespace ProjetoFinaAPIRest.Services
         public async Task UpdateAsync(Contato Obj)
         {
 
-            _contexto.Contato.Update(Obj);
+            _contexto.Usuario.Update(Obj);
             await _contexto.SaveChangesAsync();
         }
     }

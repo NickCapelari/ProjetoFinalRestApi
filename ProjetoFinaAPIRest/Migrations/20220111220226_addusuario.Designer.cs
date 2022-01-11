@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetoFinaAPIRest.Data;
 
@@ -11,9 +12,10 @@ using ProjetoFinaAPIRest.Data;
 namespace ProjetoFinaAPIRest.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20220111220226_addusuario")]
+    partial class addusuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +49,7 @@ namespace ProjetoFinaAPIRest.Migrations
 
                     b.HasIndex("PessoaId");
 
-                    b.ToTable("Usuario");
+                    b.ToTable("Contato");
                 });
 
             modelBuilder.Entity("ProjetoFinaAPIRest.Models.Evento", b =>
@@ -266,27 +268,6 @@ namespace ProjetoFinaAPIRest.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TipoIngresso");
-                });
-
-            modelBuilder.Entity("ProjetoFinaAPIRest.Models.Usuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("User")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("ProjetoFinaAPIRest.Models.Contato", b =>

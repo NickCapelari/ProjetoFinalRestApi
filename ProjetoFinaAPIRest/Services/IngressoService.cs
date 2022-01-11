@@ -20,6 +20,13 @@ namespace ProjetoFinaAPIRest.Services
 
         public async Task InsertAsync(Ingresso obj)
         {
+            EventoService e = new EventoService(_contexto);
+            Evento evento = await e.FindByIdAsync(obj.EventoId);
+
+            TipoIngressoService t = new TipoIngressoService(_contexto);
+            TipoIngresso tipoI = await t.FindByIdAsync(obj.TipoIngressoId);
+
+            obj.CalculaValorIngresso(evento.Valor, tipoI.PercentualDesconto);
             _contexto.Add(obj);
             await _contexto.SaveChangesAsync();
         }
@@ -27,6 +34,7 @@ namespace ProjetoFinaAPIRest.Services
         {
             return await _contexto.Ingresso
                 .FirstOrDefaultAsync(obj => obj.Id == Id);
+
         }
 
         public async Task RemoveAsync(int Id)
@@ -44,7 +52,13 @@ namespace ProjetoFinaAPIRest.Services
         }
         public async Task UpdateAsync(Ingresso Obj)
         {
+            EventoService e = new EventoService(_contexto);
+            Evento evento = await e.FindByIdAsync(Obj.EventoId);
 
+            TipoIngressoService t = new TipoIngressoService(_contexto);
+            TipoIngresso tipoI = await t.FindByIdAsync(Obj.TipoIngressoId);
+
+            Obj.CalculaValorIngresso(evento.Valor, tipoI.PercentualDesconto);
             _contexto.Ingresso.Update(Obj);
             await _contexto.SaveChangesAsync();
         }

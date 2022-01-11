@@ -112,5 +112,13 @@ namespace ProjetoFinaAPIRest.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("evento/date")]
+        public async Task<IActionResult> GetByDateAsync()
+        {
+            var evento = await _evento.FindByDate();
+            return evento == null ? NotFound() : Ok(evento);
+        }
+
     }
 }

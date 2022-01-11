@@ -45,7 +45,7 @@ namespace ProjetoFinaAPIRest.Controllers
 
             try
             {
-               
+                //ingresso.CalculaValorIngresso(ingresso.TipoIngresso.PercentualDesconto, ingresso.Evento.Valor);
                 await _ingresso.InsertAsync(ingresso);
                 return Created($"api/evento/{ingresso.Id}", ingresso);
             }
@@ -73,7 +73,8 @@ namespace ProjetoFinaAPIRest.Controllers
 
             try
 
-            {               
+            {
+                //i.CalculaValorIngresso(ingresso.TipoIngresso.PercentualDesconto, ingresso.Evento.Valor);
                 i.TipoIngressoId = ingresso.TipoIngressoId;
                 i.EventoId = ingresso.EventoId;
                 i.PessoaId = ingresso.PessoaId;
