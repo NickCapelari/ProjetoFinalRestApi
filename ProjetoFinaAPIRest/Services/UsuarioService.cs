@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjetoFinaAPIRest.Data;
 using ProjetoFinaAPIRest.Models;
+using System.Security.Cryptography;
 
 namespace ProjetoFinaAPIRest.Services
 {
     public class UsuarioService
     {
         private readonly Contexto _contexto;
-
-       public UsuarioService()
+        
+        public UsuarioService()
         {
 
         }
@@ -24,6 +25,9 @@ namespace ProjetoFinaAPIRest.Services
 
         public async Task InsertAsync(Usuario obj)
         {
+           var hash = new Hash(SHA512.Create());
+            string senhaCripto = hash.CriptografarSenha(obj.Password);
+            obj.Password = senhaCripto;
             _contexto.Add(obj);
             await _contexto.SaveChangesAsync();
         }

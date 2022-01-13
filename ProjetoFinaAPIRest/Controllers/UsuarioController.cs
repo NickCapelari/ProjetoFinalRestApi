@@ -54,6 +54,7 @@ namespace ProjetoFinaAPIRest.Controllers
 
             try
             {
+                
                 await _usuarioService.InsertAsync(usuario);
                 return Created($"api/usuario/{usuario.Id}", usuario);
             }
