@@ -1,5 +1,11 @@
+using Microsoft.Extensions.DependencyInjection;
+using ProjetoFinaAPIRest;
 using ProjetoFinaAPIRest.Data;
 using ProjetoFinaAPIRest.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +26,30 @@ builder.Services.AddScoped<FotoPortifolioService>();
 builder.Services.AddScoped<PortifolioService>();
 builder.Services.AddScoped<UsuarioService>();
 
+
+
+var tokenKey = "TestesTestestestes";
+var key = Encoding.ASCII.GetBytes(tokenKey);
+
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(x =>
+{
+    x.RequireHttpsMetadata = false;
+    x.SaveToken = true;
+    x.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
+builder.Services.AddSingleton<IJWTAuthenticationManager>(new JWTAuthenticationManager(tokenKey));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +59,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

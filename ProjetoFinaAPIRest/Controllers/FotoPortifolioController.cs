@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoFinaAPIRest.Models;
 using ProjetoFinaAPIRest.Services;
@@ -16,6 +17,7 @@ namespace ProjetoFinaAPIRest.Controllers
             _fotoPortifolioService = fotoPortifolioService;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("fotoportifolio")]
         public async Task<IActionResult> getAllAsync()
@@ -24,6 +26,7 @@ namespace ProjetoFinaAPIRest.Controllers
             return list == null ? NotFound() : Ok(list);
 
         }
+        [Authorize]
         [HttpGet]
         [Route("fotoportifolio/{id}")]
         public async Task<IActionResult> getByIdAsync([FromRoute] int id)
@@ -32,6 +35,7 @@ namespace ProjetoFinaAPIRest.Controllers
             return evento == null ? NotFound() : Ok(evento);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("fotoportifolio")]
         public async Task<IActionResult> PostAsync(
@@ -54,6 +58,7 @@ namespace ProjetoFinaAPIRest.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut]
         [Route("fotoportifolio/{id}")]
         public async Task<IActionResult> PutAsync(
@@ -85,6 +90,7 @@ namespace ProjetoFinaAPIRest.Controllers
 
         }
 
+        [Authorize]
         [HttpDelete]
         [Route("fotoportifolio/{id}")]
         public async Task<IActionResult> DeletAsync(

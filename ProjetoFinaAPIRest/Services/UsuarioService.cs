@@ -8,6 +8,10 @@ namespace ProjetoFinaAPIRest.Services
     {
         private readonly Contexto _contexto;
 
+       public UsuarioService()
+        {
+
+        }
         public UsuarioService(Contexto contexto)
         {
             _contexto = contexto;
@@ -30,8 +34,15 @@ namespace ProjetoFinaAPIRest.Services
         }
         public async Task<Usuario> FindByNameAsync(string login)
         {
-            return await _contexto.User
+            Contexto c = new Contexto();
+            return await c.User
                     .FirstOrDefaultAsync(ob => ob.User == login);
+        }
+        public  Usuario FindByName(string login)
+        {
+            Contexto c = new Contexto();
+            return  c.User
+                    .FirstOrDefault(ob => ob.User == login);
         }
 
         public async Task RemoveAsync(int Id)

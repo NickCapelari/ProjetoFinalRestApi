@@ -60,3 +60,5 @@ D:\Curso.Net\ProjetoFinalAPIRest\ProjetoFinaAPIRest\ProjetoFinaAPIRest\obj\Debug
 D:\Curso.Net\ProjetoFinalAPIRest\ProjetoFinaAPIRest\ProjetoFinaAPIRest\obj\Debug\net6.0\ProjetoFinaAPIRest.pdb
 D:\Curso.Net\ProjetoFinalAPIRest\ProjetoFinaAPIRest\ProjetoFinaAPIRest\obj\Debug\net6.0\ProjetoFinaAPIRest.genruntimeconfig.cache
 D:\Curso.Net\ProjetoFinalAPIRest\ProjetoFinaAPIRest\ProjetoFinaAPIRest\obj\Debug\net6.0\ProjetoFinaAPIRest.csproj.AssemblyReference.cache
+D:\Curso.Net\ProjetoFinalAPIRest\ProjetoFinaAPIRest\ProjetoFinaAPIRest\bin\Debug\net6.0\Invio.Extensions.Authentication.JwtBearer.dll
+D:\Curso.Net\ProjetoFinalAPIRest\ProjetoFinaAPIRest\ProjetoFinaAPIRest\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

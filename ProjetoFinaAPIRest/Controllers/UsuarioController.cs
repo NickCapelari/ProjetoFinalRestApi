@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoFinaAPIRest.Models;
 using ProjetoFinaAPIRest.Services;
@@ -10,10 +11,12 @@ namespace ProjetoFinaAPIRest.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly UsuarioService _usuarioService;
+        private readonly IJWTAuthenticationManager jWTAuthenticationManager;
 
-        public UsuarioController(UsuarioService usuarioService)
+        public UsuarioController(UsuarioService usuarioService, IJWTAuthenticationManager jWTAuthenticationManager)
         {
             _usuarioService = usuarioService;
+            this.jWTAuthenticationManager = jWTAuthenticationManager;
         }
 
         [HttpGet]
@@ -83,6 +86,18 @@ namespace ProjetoFinaAPIRest.Controllers
 
                 return BadRequest(ex.Message);
             }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("autenticar")]
+        public IActionResult Authenticate([FromBody] Usuario usuario)
+        {
+            var token = jWTAuthenticationManager.Authenticate(usuario.User, usuario.Password);
+
+            if (token == null)
+                return Unauthorized();
+
+            return Ok(token);
         }
     }
 }

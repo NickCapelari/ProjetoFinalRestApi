@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoFinaAPIRest.Models;
 using ProjetoFinaAPIRest.Services;
@@ -16,6 +17,7 @@ namespace ProjetoFinaAPIRest.Controllers
             _tipoIngressoService = tipoIngressoService;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("tipoingresso")]
         public async Task<IActionResult> getAllAsync()
@@ -24,6 +26,8 @@ namespace ProjetoFinaAPIRest.Controllers
             return list == null ? NotFound() : Ok(list);
 
         }
+
+        [Authorize]
         [HttpGet]
         [Route("tipoingresso/{id}")]
         public async Task<IActionResult> getByIdAsync([FromRoute] int id)
@@ -32,6 +36,7 @@ namespace ProjetoFinaAPIRest.Controllers
             return tIngresso == null ? NotFound() : Ok(tIngresso);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("tipoingresso")]
         public async Task<IActionResult> PostAsync(
@@ -54,6 +59,7 @@ namespace ProjetoFinaAPIRest.Controllers
             }
         }
 
+        [Authorize]
         [HttpPut]
         [Route("tipoingresso/{id}")]
         public async Task<IActionResult> PutAsync(
@@ -86,6 +92,7 @@ namespace ProjetoFinaAPIRest.Controllers
 
         }
 
+        [Authorize]
         [HttpDelete]
         [Route("tipoingresso/{id}")]
         public async Task<IActionResult> DeletAsync(
