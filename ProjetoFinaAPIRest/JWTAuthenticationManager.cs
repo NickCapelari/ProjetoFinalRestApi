@@ -5,6 +5,7 @@ using ProjetoFinaAPIRest.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ProjetoFinaAPIRest
@@ -31,9 +32,10 @@ namespace ProjetoFinaAPIRest
       
         public string Authenticate(string username, string password)
         {
+            Hash hash = new Hash(SHA512.Create());
             UsuarioService _usuarioService = new UsuarioService();
             Usuario u = _usuarioService.FindByName(username);
-            if (u.User == username && u.Password == password)
+            if (u.User == username && hash.VerificarSenha(password, u.Password))
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(tokenKey);

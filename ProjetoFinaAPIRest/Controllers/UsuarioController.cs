@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoFinaAPIRest.Models;
 using ProjetoFinaAPIRest.Services;
+using System.Security.Cryptography;
 
 namespace ProjetoFinaAPIRest.Controllers
 {
@@ -93,6 +94,7 @@ namespace ProjetoFinaAPIRest.Controllers
         [HttpPost("autenticar")]
         public IActionResult Authenticate([FromBody] Usuario usuario)
         {
+            Hash hash = new Hash(SHA512.Create());
             var token = jWTAuthenticationManager.Authenticate(usuario.User, usuario.Password);
 
             if (token == null)
